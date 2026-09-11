@@ -1,8 +1,6 @@
-# Radar Electoral
+"# Radar Electoral"
 
 
-
-\# Radar Electoral
 
 
 
@@ -58,7 +56,7 @@ Radar Electoral es un proyecto en \*\*Java (Spring Boot)\*\* que busca crear una
 
 ✍️ Autor: Gustavo  
 
-🌍 Colaboradores:
+🌍 Colaboradores: 
 
 
 
