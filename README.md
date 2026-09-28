@@ -54,7 +54,7 @@ Radar Electoral es un proyecto en \*\*Java (Spring Boot)\*\* que busca crear una
 
 
 
-✍️ Autor: Gustavo  
+✍️ Autor: Gustavo ORCA.COMPANY 
 
 🌍 Colaboradores: 
 

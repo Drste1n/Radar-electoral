@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Eleitoral - Início</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --radar-navy: #042444;    
+            --radar-green: #008c4a;   
+            --radar-yellow: #ffc800;  
+            --radar-light-blue: #007bb5;
+            --app-bg: #f8f9fa;        
+        }
+        
+        body {
+            background-color: var(--app-bg);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .corner-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--radar-green) 0%, var(--radar-green) 22%, var(--radar-yellow) 22%, var(--radar-yellow) 28%, transparent 28%);
+            z-index: 0;
+        }
+
+        .corner-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(-45deg, var(--radar-navy) 0%, var(--radar-navy) 20%, var(--radar-yellow) 20%, var(--radar-yellow) 28%, var(--radar-green) 28%, var(--radar-green) 35%, transparent 35%);
+            z-index: 0;
+        }
+
+        .header-custom {
+            padding: 2rem 5rem 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0; /* Evita que el contenedor del logo se comprima */
+        }
+
+        /* Logo unificado exactamente a 280px para que coincida perfectamente con la ficha */
+        .logo-img {
+            height: 280px; 
+            width: auto;
+            margin-top: -15px;
+            object-fit: contain;
+            mix-blend-mode: multiply; 
+        }
+
+        .title-container {
+            text-align: right;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 15px;
+        }
+
+        .title-line-1 {
+            color: var(--radar-navy);
+            font-weight: 900;
+            font-style: italic;
+            font-size: 3.2rem;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .title-line-2 {
+            font-weight: 900;
+            font-style: italic;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+        }
+
+        .title-underline {
+            height: 7px;
+            width: 100%;
+            background: linear-gradient(to right, var(--radar-green) 50%, var(--radar-yellow) 50%);
+            margin-top: 5px;
+        }
+        
+        .btn-radar {
+            background-color: var(--radar-navy);
+            color: white;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-radar:hover {
+            background-color: var(--radar-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 140, 74, 0.3);
+        }
+        
+        .card-candidato {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #e5e7eb !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 5;
+        }
+        .card-candidato:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+        }
+        
+        .profile-img-index {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 25px auto 15px auto;
+            border: 3px solid var(--radar-green);
+            background-color: #e9ecef;
+        }
+        
+        .badge-partido {
+            background-color: var(--radar-navy) !important;
+            color: white;
+            font-size: 0.85rem;
+            border: 1px solid var(--radar-yellow); 
+        }
+
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--radar-navy);
+            letter-spacing: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: auto;
+            padding: 4rem 0 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 992px) {
+            .header-custom {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+            .logo-img {
+                height: 210px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+            .title-container {
+                text-align: center;
+                margin-top: 0;
+            }
+            .title-line-1 { font-size: 2.2rem; }
+            .title-line-2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="corner-top-left"></div>
+    <div class="corner-bottom-right"></div>
+
+    <header class="header-custom">
+        <div class="logo-container">
+            <a href="/">
+                <img th:src="@{/images/logo.png}" alt="Radar Eleitoral" class="logo-img">
+            </a>
+        </div>
+        
+        <div class="title-container">
+            <h1 class="title-line-1 mb-0">CANDIDATOS A</h1>
+            <h2 class="title-line-2 mb-0">
+                <span style="color: var(--radar-navy);">PRESIDENTE | </span>
+                <span style="color: var(--radar-green);">BRASIL </span>
+                <span style="color: var(--radar-light-blue);">2026</span>
+            </h2>
+            <div class="title-underline"></div>
+        </div>
+    </header>
+
+    <div class="container mt-4 mb-3" style="position: relative; z-index: 10; max-width: 1400px;">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4 justify-content-center">
+            
+            <div class="col" th:each="candidato : ${candidatos}">
+                <div class="card h-100 shadow-sm border-0 card-candidato text-center d-flex flex-column">
+                    
+                    <img th:if="${not #strings.isEmpty(candidato.fotoUrl)}" th:src="${candidato.fotoUrl}" class="profile-img-index shadow-sm" alt="Foto">
+                    <div th:unless="${not #strings.isEmpty(candidato.fotoUrl)}" class="profile-img-index shadow-sm d-flex justify-content-center align-items-center">
+                        <i class="bi bi-person text-secondary" style="font-size: 4rem;"></i>
+                    </div>
+                    
+                    <div class="card-body d-flex flex-column align-items-center px-4 pb-4">
+                        <span class="badge badge-partido mb-3 px-3 py-2 rounded-pill" th:text="${candidato.partidoSigla}">Partido</span>
+                        <h5 class="card-title fw-bold mb-1 text-dark" th:text="${candidato.nombreUrna}">Nombre</h5>
+                        <p class="text-muted small mb-4" th:text="${candidato.cargo}">Cargo</p>
+                        
+                        <a th:href="@{/candidatos/{id}(id=${candidato.sqCandidato})}" class="btn btn-radar mt-auto rounded-pill py-2 px-4 w-100">
+                            <i class="bi bi-eye-fill me-1"></i> Ver Perfil
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer class="footer-text">
+        INFORMAÇÃO QUE FORTALECE A DEMOCRACIA
+    </footer>
+
+</body>
+</html>

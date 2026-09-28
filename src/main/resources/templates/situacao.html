@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situação Legal e Jurídica - Radar Eleitoral</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --radar-navy: #042444;    
+            --radar-green: #008c4a;   
+            --radar-yellow: #ffc800;  
+            --radar-light-blue: #007bb5;
+            --radar-red: #dc2626;
+            --app-bg: #f8f9fa;        
+        }
+        
+        body {
+            background-color: var(--app-bg);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .corner-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--radar-green) 0%, var(--radar-green) 22%, var(--radar-yellow) 22%, var(--radar-yellow) 28%, transparent 28%);
+            z-index: 0;
+        }
+
+        .corner-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(-45deg, var(--radar-navy) 0%, var(--radar-navy) 20%, var(--radar-yellow) 20%, var(--radar-yellow) 28%, var(--radar-green) 28%, var(--radar-green) 35%, transparent 35%);
+            z-index: 0;
+        }
+
+        .header-custom {
+            padding: 1.5rem 3rem 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            height: 280px; 
+            width: auto;
+            margin-top: -15px;
+            object-fit: contain;
+            mix-blend-mode: multiply; 
+        }
+
+        .btn-regresar {
+            background-color: var(--radar-navy);
+            color: white;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-regresar:hover {
+            background-color: var(--radar-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 140, 74, 0.3);
+        }
+
+        .card-legal {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 30px rgba(4, 36, 68, 0.05);
+            padding: 2.5rem;
+        }
+
+        /* Semáforo Jurídico */
+        .status-badge-lg {
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .status-deferido {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 2px solid #86efac;
+        }
+
+        .status-aguardando {
+            background-color: #fef9c3;
+            color: #a16207;
+            border: 2px solid #fde047;
+        }
+
+        .status-indeferido {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 2px solid #fca5a5;
+        }
+
+        .info-pill {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .btn-certidao {
+            background-color: var(--radar-navy);
+            color: white;
+            border: 2px solid var(--radar-green);
+            border-radius: 14px;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .btn-certidao:hover {
+            background-color: var(--radar-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 140, 74, 0.25);
+        }
+
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--radar-navy);
+            letter-spacing: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: auto;
+            padding: 4rem 0 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 992px) {
+            .header-custom {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+            .logo-img {
+                height: 210px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="corner-top-left"></div>
+    <div class="corner-bottom-right"></div>
+
+    <header class="header-custom">
+        <div class="logo-container">
+            <a href="/">
+                <img th:src="@{/images/logo.png}" alt="Radar Eleitoral" class="logo-img">
+            </a>
+        </div>
+        
+        <div>
+            <a th:href="@{/candidatos/{id}(id=${candidato.sqCandidato})}" class="btn btn-regresar rounded-pill py-2 px-4 shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i> Voltar ao Perfil
+            </a>
+        </div>
+    </header>
+
+    <div class="container pb-5 mt-2" style="max-width: 950px; position: relative; z-index: 5;">
+        
+        <!-- Header del Candidato -->
+        <div class="card-legal mb-4 text-center border-0" style="border-top: 6px solid var(--radar-light-blue) !important;">
+            <div class="d-flex justify-content-center mb-3">
+                <img th:if="${not #strings.isEmpty(candidato.fotoUrl)}" th:src="${candidato.fotoUrl}" class="rounded-circle shadow-sm" style="width: 120px; height: 120px; object-fit: cover; border: 4px solid var(--radar-light-blue);" alt="Foto do Candidato">
+                
+                <div th:unless="${not #strings.isEmpty(candidato.fotoUrl)}" class="rounded-circle shadow-sm d-flex justify-content-center align-items-center bg-light" style="width: 120px; height: 120px; border: 4px solid var(--radar-light-blue);">
+                    <i class="bi bi-person-fill text-secondary" style="font-size: 4rem;"></i>
+                </div>
+            </div>
+            
+            <h2 class="fw-bold mb-1" th:text="${candidato.nombreUrna}" style="color: var(--radar-navy);">Nome do Candidato</h2>
+            <p class="text-secondary mb-3">Candidatura à Presidência da República • Nº <strong th:text="${candidato.numero}">00</strong></p>
+            
+            <div class="d-flex justify-content-center gap-2 mb-4">
+                <span class="badge px-4 py-2 rounded-pill shadow-sm" style="background-color: var(--radar-navy); color: white; border: 1px solid var(--radar-yellow);" th:text="${candidato.partidoSigla}">Partido</span>
+                <span class="badge px-4 py-2 rounded-pill shadow-sm bg-light text-dark border">
+                    <i class="bi bi-check2-shield me-1 text-primary"></i> TSE Eleições Oficiais
+                </span>
+            </div>
+
+            <!-- Semáforo de Situación Jurídica Dinámico -->
+            <div id="contenedor-status" class="mt-2">
+                <span id="badge-legal" class="status-badge-lg shadow-sm" th:text="${candidato.situacionLegal}">
+                    AGUARDANDO JULGAMENTO
+                </span>
+            </div>
+        </div>
+
+        <!-- Dashboard de Transparencia Jurídica -->
+        <div class="card-legal mb-4">
+            <h4 class="fw-bold mb-4" style="color: var(--radar-navy);">
+                <i class="bi bi-bank2 me-2" style="color: var(--radar-light-blue);"></i> Registro e Elegibilidade
+            </h4>
+
+            <!-- TARJETAS DINÁMICAS (Datos reales de la BD) -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="info-pill text-center text-md-start">
+                        <span class="text-muted d-block small text-uppercase fw-semibold mb-1">Processo Judicial Eletrônico (PJe)</span>
+                        <strong class="text-dark fs-5 d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-2">
+                            <i class="bi bi-file-earmark-text text-primary"></i> 
+                            <span th:text="${candidato.numeroProcesso}">0000000-00.2026.0.00.0000</span>
+                        </strong>
+                        <p class="text-muted small mt-2 mb-0">Número de Processo Único (NPU) oficial no TSE.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="info-pill text-center text-md-start">
+                        <span class="text-muted d-block small text-uppercase fw-semibold mb-1">Motivo / Detalhe da Situação</span>
+                        <strong class="text-dark fs-5 d-flex align-items-center justify-content-center justify-content-md-start gap-2 mt-2" style="line-height: 1.3;">
+                            <i class="bi bi-info-circle-fill text-warning"></i> 
+                            <span th:text="${candidato.motivoSituacao}">Sem ocorrências</span>
+                        </strong>
+                        <p class="text-muted small mt-2 mb-0">Causa jurídica oficial registrada na base de dados do tribunal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-muted opacity-25">
+
+            <!-- Acceso a Certidões Criminais -->
+            <div class="p-4 rounded-4" style="background-color: #f1f5f9; border-left: 5px solid var(--radar-navy);">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                    <div class="flex-grow-1">
+                        <h5 class="fw-bold mb-1" style="color: var(--radar-navy);">
+                            <i class="bi bi-file-earmark-pdf-fill me-2" style="color: var(--radar-green);"></i> Repositório de Certidões e Documentos
+                        </h5>
+                        <p class="text-secondary small mb-0">
+                            Acesse a íntegra das certidões criminais, civis e comprovantes no sistema centralizado do TSE.
+                        </p>
+                    </div>
+                    
+                    <div style="min-width: 250px;">
+                        <!-- Enlace seguro oficial -->
+                        <a href="https://divulgacandcontas.tse.jus.br/divulga/" target="_blank" class="btn-certidao shadow-sm w-100 mb-2">
+                            <i class="bi bi-search fs-5"></i> Buscar no Portal do TSE
+                        </a>
+                        <p class="text-muted text-center mb-0" style="font-size: 0.70rem; line-height: 1.2;">
+                            * Por restrições de segurança do TSE, busque pelo nome do candidato diretamente no portal oficial.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nota Jurídica Informativa -->
+        <div class="alert bg-white border rounded-4 p-4 text-muted small shadow-sm">
+            <h6 class="fw-bold text-dark mb-2"><i class="bi bi-info-circle me-1 text-primary"></i> Sobre a Situação da Candidatura:</h6>
+            <ul class="mb-0 ps-3">
+                <li><strong>Deferido:</strong> Candidato regular que preencheu todas as condições de elegibilidade e não possui impedimentos jurídicos.</li>
+                <li><strong>Aguardando Julgamento:</strong> Pedido de registro apresentado dentro do prazo legal aguardando validação definitiva dos relatores da Justiça Eleitoral.</li>
+                <li><strong>Indeferido:</strong> Candidatura com pendências legais ou decisão judicial que impede a participação no pleito.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer class="footer-text">
+        INFORMAÇÃO QUE FORTALECE A DEMOCRACIA
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const badge = document.getElementById("badge-legal");
+            if (badge) {
+                const txt = badge.innerText.trim().toUpperCase();
+                
+                if (txt.includes("DEFERIDO") && !txt.includes("INDEFERIDO")) {
+                    badge.classList.add("status-deferido");
+                    badge.innerHTML = '<i class="bi bi-check-circle-fill"></i> DEFERIDO (APTO)';
+                } else if (txt.includes("INDEFERIDO") || txt.includes("CANCELADO") || txt.includes("INAPTO")) {
+                    badge.classList.add("status-indeferido");
+                    badge.innerHTML = '<i class="bi bi-x-circle-fill"></i> INDEFERIDO (INAPTO)';
+                } else {
+                    badge.classList.add("status-aguardando");
+                    badge.innerHTML = '<i class="bi bi-clock-history"></i> AGUARDANDO JULGAMENTO';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

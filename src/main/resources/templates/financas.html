@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparência Financeira - Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --radar-navy: #042444;    
+            --radar-green: #008c4a;   
+            --radar-yellow: #ffc800;  
+            --radar-light-blue: #007bb5;
+            --app-bg: #f8f9fa;        
+            --card-bg: #ffffff;
+            
+            --color-in: #008c4a;     
+            --color-out: #e63946;    
+            --color-cat: #042444;    
+        }
+        
+        body {
+            background-color: var(--app-bg);
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Marcos diagonales de las esquinas corporativas */
+        .corner-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--radar-green) 0%, var(--radar-green) 22%, var(--radar-yellow) 22%, var(--radar-yellow) 28%, transparent 28%);
+            z-index: 0;
+        }
+
+        .corner-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(-45deg, var(--radar-navy) 0%, var(--radar-navy) 20%, var(--radar-yellow) 20%, var(--radar-yellow) 28%, var(--radar-green) 28%, var(--radar-green) 35%, transparent 35%);
+            z-index: 0;
+        }
+        
+        /* Header flotante con logo imponente a la izquierda */
+        .header-custom {
+            padding: 2rem 3rem 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .logo-img {
+            height: 280px; 
+            width: auto;
+            margin-top: -15px;
+            object-fit: contain;
+            mix-blend-mode: multiply; 
+        }
+
+        .btn-regresar {
+            background-color: var(--radar-navy);
+            color: white;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-regresar:hover {
+            background-color: var(--radar-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 140, 74, 0.3);
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            border: 1px solid #e5e7eb !important;
+            padding: 24px;
+            height: 100%; 
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 1.3rem;
+        }
+
+        .dinero-val {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .feed-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .feed-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .name-container {
+            flex: 1; 
+            min-width: 0; 
+            padding-right: 15px;
+        }
+        .long-name {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            word-wrap: break-word;
+            margin-bottom: 4px;
+        }
+
+        .visual-bar-track {
+            width: 100%;
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .visual-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        .thermo-track {
+            width: 100%;
+            height: 24px;
+            background-color: #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .thermo-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.5s ease;
+        }
+
+        /* Footer Corporativo Oficial */
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--radar-navy);
+            letter-spacing: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: auto;
+            padding: 4rem 0 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 992px) {
+            .header-custom {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+            .logo-img {
+                height: 210px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Marcos diagonales corporativos -->
+    <div class="corner-top-left"></div>
+    <div class="corner-bottom-right"></div>
+
+    <!-- Header flotante unificado -->
+    <header class="header-custom">
+        <div class="logo-container">
+            <a href="/">
+                <img th:src="@{/images/logo.png}" alt="Radar Eleitoral" class="logo-img">
+            </a>
+        </div>
+        
+        <div>
+            <a th:href="@{/candidatos/{id}(id=${candidato.sqCandidato})}" class="btn btn-regresar rounded-pill py-2 px-4 shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i> Voltar ao Perfil
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal -->
+    <div class="container-fluid mt-4 mb-5 px-xl-5" style="max-width: 1400px; position: relative; z-index: 5;">
+        
+        <!-- Perfil Header con Foto -->
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center mb-5 bg-white p-4 rounded-4 shadow-sm border border-light mx-auto" style="max-width: fit-content; padding-left: 2rem !important; padding-right: 2rem !important;">
+            <img th:if="${not #strings.isEmpty(candidato.fotoUrl)}" th:src="${candidato.fotoUrl}" class="rounded-circle shadow-sm mb-3 mb-sm-0 me-sm-4" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid var(--radar-green);" alt="Foto">
+            <div th:unless="${not #strings.isEmpty(candidato.fotoUrl)}" class="rounded-circle shadow-sm d-flex justify-content-center align-items-center bg-light mb-3 mb-sm-0 me-sm-4" style="width: 100px; height: 100px; border: 3px solid var(--radar-green);">
+                <i class="bi bi-person text-secondary" style="font-size: 3.5rem;"></i>
+            </div>
+            <div class="text-center text-sm-start">
+                <h1 class="fw-bold mb-2" th:text="${candidato.nombreUrna}" style="font-family: 'Montserrat', sans-serif; letter-spacing: -1px; font-size: 2.2rem; color: var(--radar-navy);">Nome</h1>
+                <span class="badge rounded-pill fw-medium px-3 py-2 shadow-sm" style="background-color: var(--radar-navy); color: white; border: 1px solid var(--radar-yellow);">
+                    <i class="bi bi-patch-check-fill me-1" style="color: var(--radar-green);"></i> Dashboard Oficial do TSE
+                </span>
+            </div>
+        </div>
+
+        <!-- 📊 TERMÓMETRO GIGANTE (Animado con JS) -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <div class="app-card text-center py-4">
+                     
+                    <p class="text-muted fw-semibold text-uppercase mb-1" style="font-size: 0.85rem; letter-spacing: 1px;">Termômetro da Campanha</p>
+                    <h2 class="dinero-val m-0" style="font-size: 3rem; color: var(--radar-navy);">
+                        R$ <span th:text="${candidato.totalDespesas != null ? #numbers.formatDecimal(candidato.totalDespesas, 1, 'POINT', 2, 'COMMA') : '0,00'}">0,00</span>
+                    </h2>
+                    <p class="text-muted small mt-1 mb-4">Total gasto até o momento</p>
+
+                    <!-- Barra Visual -->
+                    <div class="thermo-track shadow-sm mb-2 mx-auto" style="max-width: 90%;">
+                        <div id="thermo-fill-dinamico" class="thermo-fill" style="width: 0%; background-color: var(--radar-green);"></div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mx-auto" style="max-width: 90%;">
+                        <span id="thermo-text-dinamico" class="fw-bold" style="font-size: 1.1rem; color: var(--radar-green);">
+                            <!-- JS pondrá el texto aquí -->
+                        </span>
+                        <div class="text-end">
+                            <span class="text-muted d-block" style="font-size: 0.75rem;">LIMITE LEGAL (TETO)</span>
+                            <span class="fw-bold text-secondary fs-5">R$ <span th:text="${candidato.despesaMaxima != null ? #numbers.formatDecimal(candidato.despesaMaxima, 1, 'POINT', 2, 'COMMA') : '0,00'}">0,00</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 💰 GRID DE 3 COLUMNAS REORDENADO LÓGICAMENTE -->
+        <div class="row g-4">
+            
+            <!-- 1. 🏆 QUEM FINANCIA (Ingresos) -->
+            <div class="col-lg-4">
+                <div class="app-card">
+                    <h3 class="section-title mb-1" style="color: var(--radar-navy);"><i class="bi bi-box-arrow-in-down-left" style="color: var(--color-in);"></i> Quem Financia</h3>
+                    <p class="text-muted small mb-4">Maiores doadores da campanha</p>
+                    <div id="feed-doadores" class="d-flex flex-column"></div>
+                </div>
+            </div>
+
+            <!-- 2. 📉 O QUE COMPRAM (Categorías) -->
+            <div class="col-lg-4">
+                <div class="app-card">
+                    <h3 class="section-title mb-1" style="color: var(--radar-navy);"><i class="bi bi-pie-chart-fill" style="color: var(--radar-light-blue);"></i> O Que Compram</h3>
+                    <p class="text-muted small mb-4">Divisão dos gastos por categoria</p>
+                    <div id="feed-despesas" class="d-flex flex-column"></div>
+                </div>
+            </div>
+
+            <!-- 3. 💼 PARA ONDE VAI (Salidas) -->
+            <div class="col-lg-4">
+                <div class="app-card">
+                    <h3 class="section-title mb-1" style="color: var(--radar-navy);"><i class="bi bi-box-arrow-up-right" style="color: var(--color-out);"></i> Para Onde Vai</h3>
+                    <p class="text-muted small mb-4">Maiores recebedores da campanha</p>
+                    <div id="feed-fornecedores" class="d-flex flex-column"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Corporativo Oficial -->
+    <footer class="footer-text">
+        INFORMAÇÃO QUE FORTALECE A DEMOCRACIA
+    </footer>
+
+    <!-- SCRIPT: Lógica de la barra y las tarjetas -->
+    <script th:inline="javascript">
+        function formatarMoeda(valor) {
+            return Number(valor).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // ==========================================
+        // 1. TERMÓMETRO INTELIGENTE
+        // ==========================================
+        try {
+            let totalDespesas = /*[[${candidato.totalDespesas != null ? candidato.totalDespesas : 0}]]*/ 0;
+            let despesaMaxima = /*[[${candidato.despesaMaxima != null ? candidato.despesaMaxima : 0}]]*/ 0;
+            
+            if (despesaMaxima > 0) {
+                let pct = (totalDespesas / despesaMaxima) * 100;
+                let fillPct = pct > 100 ? 100 : pct;
+                
+                // Reglas del Semáforo
+                let corBarra = '#008c4a'; // Verde corporativo (0% - 40%)
+                if (pct > 40 && pct <= 75) corBarra = '#ffc800'; // Amarillo oro
+                else if (pct > 75 && pct <= 90) corBarra = '#f97316'; // Naranja
+                else if (pct > 90) corBarra = '#e63946'; // Rojo
+
+                setTimeout(() => {
+                    let barra = document.getElementById('thermo-fill-dinamico');
+                    if(barra) {
+                        barra.style.width = fillPct + '%';
+                        barra.style.backgroundColor = corBarra;
+                    }
+                }, 150);
+
+                let texto = document.getElementById('thermo-text-dinamico');
+                if(texto) {
+                    texto.style.color = corBarra;
+                    texto.innerText = pct.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '% do limite';
+                }
+            } else {
+                document.getElementById('thermo-text-dinamico').innerText = '0,00% do limite';
+            }
+        } catch(e) { console.error("Error termometro", e); }
+
+        // ==========================================
+        // 2. RENDERIZADO DE FEED (Doadores, Despesas, Fornecedores)
+        // ==========================================
+        try {
+            let doadores = JSON.parse(/*[[${candidato.topDoadores}]]*/ '[]' || '[]');
+            let htmlD = '';
+            doadores.forEach(d => {
+                htmlD += `
+                <div class="feed-item">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <div class="name-container">
+                            <span class="fw-bold text-dark d-block long-name">${d.nome}</span>
+                            <span class="text-muted" style="font-size: 0.75rem;">Doc: ${d.documento}</span>
+                        </div>
+                        <div class="text-end" style="flex-shrink: 0;">
+                            <span class="dinero-val d-block" style="color: var(--color-in); font-size: 1.05rem;">R$ ${formatarMoeda(d.valor)}</span>
+                            <span class="fw-bold text-muted" style="font-size: 0.8rem;">${d.porcentaje}%</span>
+                        </div>
+                    </div>
+                    <div class="visual-bar-track">
+                        <div class="visual-bar-fill" style="width: ${d.porcentaje}%; background-color: var(--color-in);"></div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('feed-doadores').innerHTML = htmlD || '<p class="text-center text-muted">Nenhum dado encontrado.</p>';
+        } catch (e) { console.error(e); }
+
+        try {
+            let despesas = JSON.parse(/*[[${candidato.topDespesas}]]*/ '[]' || '[]');
+            let htmlDe = '';
+            despesas.forEach(de => {
+                htmlDe += `
+                <div class="feed-item">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <div class="name-container">
+                            <span class="fw-bold text-dark d-block long-name">${de.tipo}</span>
+                        </div>
+                        <div class="text-end" style="flex-shrink: 0;">
+                            <span class="dinero-val d-block" style="color: var(--radar-light-blue); font-size: 1.05rem;">R$ ${formatarMoeda(de.valor)}</span>
+                            <span class="fw-bold text-muted" style="font-size: 0.8rem;">${de.porcentaje}%</span>
+                        </div>
+                    </div>
+                    <div class="visual-bar-track">
+                        <div class="visual-bar-fill" style="width: ${de.porcentaje}%; background-color: var(--radar-light-blue);"></div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('feed-despesas').innerHTML = htmlDe || '<p class="text-center text-muted">Nenhum dado encontrado.</p>';
+        } catch (e) { console.error(e); }
+
+        try {
+            let fornecedores = JSON.parse(/*[[${candidato.topFornecedores}]]*/ '[]' || '[]');
+            let htmlF = '';
+            fornecedores.forEach(f => {
+                htmlF += `
+                <div class="feed-item">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <div class="name-container">
+                            <span class="fw-bold text-dark d-block long-name">${f.nome}</span>
+                            <span class="text-muted" style="font-size: 0.75rem;">CNPJ/CPF: ${f.documento}</span>
+                        </div>
+                        <div class="text-end" style="flex-shrink: 0;">
+                            <span class="dinero-val d-block" style="color: var(--color-out); font-size: 1.05rem;">R$ ${formatarMoeda(f.valor)}</span>
+                            <span class="fw-bold text-muted" style="font-size: 0.8rem;">${f.porcentaje}%</span>
+                        </div>
+                    </div>
+                    <div class="visual-bar-track">
+                        <div class="visual-bar-fill" style="width: ${f.porcentaje}%; background-color: var(--color-out);"></div>
+                    </div>
+                </div>`;
+            });
+            document.getElementById('feed-fornecedores').innerHTML = htmlF || '<p class="text-center text-muted">Nenhum dado encontrado.</p>';
+        } catch (e) { console.error(e); }
+    </script>
+</body>
+</html>

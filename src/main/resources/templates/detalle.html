@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Candidato - Radar Eleitoral</title>
+    
+    <!-- Fuentes para máxima legibilidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            /* Colores Corporativos Oficiales */
+            --radar-navy: #042444;    
+            --radar-green: #008c4a;   
+            --radar-yellow: #ffc800;  
+            --radar-light-blue: #007bb5;
+            --app-bg: #f8f9fa;        
+        }
+        
+        body {
+            background-color: var(--app-bg);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Marcos diagonales de las esquinas corporativas */
+        .corner-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--radar-green) 0%, var(--radar-green) 22%, var(--radar-yellow) 22%, var(--radar-yellow) 28%, transparent 28%);
+            z-index: 0;
+        }
+
+        .corner-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(-45deg, var(--radar-navy) 0%, var(--radar-navy) 20%, var(--radar-yellow) 20%, var(--radar-yellow) 28%, var(--radar-green) 28%, var(--radar-green) 35%, transparent 35%);
+            z-index: 0;
+        }
+        
+        .dinero-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Header flotante sin barra sólida */
+        .header-custom {
+            padding: 2rem 3rem 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Logo unificado exactamente a 280px para que coincida con el index */
+        .logo-img {
+            height: 280px; 
+            margin-top: -15px;
+            object-fit: cover;
+            object-position: left center;
+            mix-blend-mode: multiply; 
+        }
+
+        /* Botón de regreso elegante */
+        .btn-regresar {
+            background-color: var(--radar-navy);
+            color: white;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-regresar:hover {
+            background-color: var(--radar-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 140, 74, 0.3);
+        }
+        
+        .card-clickable {
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 16px;
+            background-color: white;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .card-clickable:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(4, 36, 68, 0.1) !important;
+        }
+
+        .pill-demografica {
+            background-color: white; 
+            color: #1e293b; 
+            font-weight: 500; 
+            font-size: 0.95rem;
+            transition: transform 0.2s;
+        }
+        .pill-demografica:hover {
+            transform: scale(1.02);
+            background-color: #f8fafc;
+        }
+
+        /* Footer Corporativo */
+        .footer-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--radar-navy);
+            letter-spacing: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-top: auto;
+            padding: 4rem 0 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 992px) {
+            .header-custom {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+            .logo-img {
+                height: 210px;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Marcos diagonales corporativos -->
+    <div class="corner-top-left"></div>
+    <div class="corner-bottom-right"></div>
+
+    <!-- Header flotante con logo grande unificado -->
+    <header class="header-custom">
+        <div class="logo-container">
+            <a href="/">
+                <img th:src="@{/images/logo.png}" alt="Radar Eleitoral" class="logo-img">
+            </a>
+        </div>
+        
+        <div>
+            <a href="/" class="btn btn-regresar rounded-pill py-2 px-4 shadow-sm">
+                <i class="bi bi-arrow-left me-2"></i> Voltar ao Início
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal -->
+    <div class="container mt-4 mb-5" style="max-width: 1000px; position: relative; z-index: 5;">
+        
+        <!-- Tarjeta Principal de Perfil -->
+        <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start bg-white p-4 rounded-4 shadow-sm mb-5 border" style="border-left: 6px solid var(--radar-green) !important;">
+            
+            <!-- Foto Circular a la izquierda -->
+            <img th:if="${not #strings.isEmpty(candidato.fotoUrl)}" th:src="${candidato.fotoUrl}" class="rounded-circle shadow-sm mb-3 mb-md-0" style="width: 140px; height: 140px; object-fit: cover; border: 4px solid var(--radar-green);" alt="Foto">
+            
+            <div th:unless="${not #strings.isEmpty(candidato.fotoUrl)}" class="rounded-circle shadow-sm d-flex justify-content-center align-items-center bg-light mb-3 mb-md-0" style="width: 140px; height: 140px; border: 4px solid var(--radar-green);">
+                <i class="bi bi-person text-secondary" style="font-size: 5rem;"></i>
+            </div>
+            
+            <!-- Información a la derecha de la foto -->
+            <div class="ms-md-4 text-center text-md-start w-100">
+                <h1 class="fw-bold mb-1" th:text="${candidato.nombreUrna}" style="letter-spacing: -0.5px; color: var(--radar-navy);">Nombre</h1>
+                
+                <p class="fs-5 text-secondary mb-2">
+                    <i class="bi bi-person-badge-fill me-2" style="color: var(--radar-green);"></i><span th:text="${candidato.profesion}">Cargo/Profesión</span>
+                </p>
+                
+                <!-- Partido Político adaptado al azul corporativo -->
+                <span class="badge fs-6 px-4 py-2 rounded-pill shadow-sm mb-3" style="background-color: var(--radar-navy); color: white; border: 1px solid var(--radar-yellow);" th:text="${candidato.partidoSigla}">Partido</span>
+                
+                <!-- Píldoras Demográficas -->
+                <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mt-2" th:if="${candidato.grauInstrucao != null}">
+                    
+                    <!-- Nivel Educativo -->
+                    <span class="badge rounded-pill px-3 py-2 border shadow-sm pill-demografica">
+                        <i class="bi bi-mortarboard-fill me-2" style="color: var(--radar-light-blue);"></i> 
+                        <span th:text="${candidato.grauInstrucao}">Superior Completo</span>
+                    </span>
+
+                    <!-- Ocupación Real -->
+                    <span class="badge rounded-pill px-3 py-2 border shadow-sm pill-demografica">
+                        <i class="bi bi-briefcase-fill me-2" style="color: var(--radar-yellow);"></i> 
+                        <span th:text="${candidato.ocupacao}">Advogado</span>
+                    </span>
+
+                    <!-- Estado Civil y Raza/Color -->
+                    <span class="badge rounded-pill px-3 py-2 border shadow-sm pill-demografica">
+                        <i class="bi bi-person-lines-fill me-2" style="color: var(--radar-green);"></i> 
+                        <span th:text="${candidato.estadoCivil} + ' • ' +${candidato.corRaca}">Casado(a) • Branca</span>
+                    </span>
+                </div>
+
+                <!-- Datos Ocultos de Redes para JS -->
+                <div id="datos-redes-candidato" style="display: none;" th:text="${candidato.redesSociales}"></div>
+                
+                <!-- Contenedor donde aparecerán los botones de redes -->
+                <div id="contenedor-redes-presidenciales" class="d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mt-4">
+                    <!-- El JavaScript inyectará las píldoras aquí -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tarjetas Interactivas de Desglose (Grid 2x2) -->
+        <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+            
+            <!-- 1. Patrimonio -->
+            <div class="col">
+                <a th:href="@{/candidatos/{id}/patrimonio(id=${candidato.sqCandidato})}" class="text-decoration-none h-100 d-block">
+                    <div class="card h-100 card-clickable border-0 shadow-sm p-4 d-flex flex-row align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm" style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--radar-navy), #0a3a6b);">
+                            <i class="bi bi-cash-coin fs-2" style="color: var(--radar-yellow);"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h6 class="text-secondary text-uppercase fw-bold mb-1" style="font-size: 0.85rem;">Patrimônio Declarado</h6>
+                            <h4 id="patrimonio-card-val" class="fw-bold mb-0 dinero-text" th:text="${candidato.patrimonio}" style="color: var(--radar-navy);">R$ 0,00</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 2. Transparencia Financiera -->
+            <div class="col">
+                <a th:href="@{/candidatos/{id}/financas(id=${candidato.sqCandidato})}" class="text-decoration-none h-100 d-block">
+                    <div class="card h-100 card-clickable border-0 shadow-sm p-4 d-flex flex-row align-items-center" style="border-radius: 16px; background: linear-gradient(135deg, var(--radar-navy) 0%, #0a3a6b 100%);">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm" style="width: 70px; height: 70px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(0, 140, 74, 0.5);">
+                            <i class="bi bi-graph-up-arrow fs-2" style="color: var(--radar-green);"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h6 class="text-uppercase fw-bold mb-1" style="font-size: 0.85rem; color: #cbd5e1;">Transparência Financeira</h6>
+                            <h4 class="fw-bold mb-0 text-white" style="letter-spacing: -0.5px;">Acessar Dados</h4>
+                            <span style="font-size: 0.8rem; color: var(--radar-green); margin-top: 5px; display: block;">
+                                <i class="bi bi-eye-fill me-1"></i> Receitas, Doadores e Fornecedores
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 3. Situación Legal -->
+            <div class="col">
+                <a th:href="@{/candidatos/{id}/situacao(id=${candidato.sqCandidato})}" class="text-decoration-none h-100 d-block">
+                    <div class="card h-100 card-clickable border-0 shadow-sm p-4 d-flex flex-row align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm" style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--radar-navy), var(--radar-light-blue));">
+                            <i class="bi bi-file-earmark-check fs-2 text-white"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h6 class="text-secondary text-uppercase fw-bold mb-1" style="font-size: 0.85rem;">Situação Legal</h6>
+                            <h4 class="fw-bold mb-0" th:text="${candidato.situacionLegal}" style="color: var(--radar-navy);">Apto</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 4. Vicepresidente -->
+            <div class="col">
+                <a th:href="@{/candidatos/{id}/vice(id=${candidato.sqCandidato})}" class="text-decoration-none h-100 d-block">
+                    <div class="card h-100 card-clickable border-0 shadow-sm p-4 d-flex flex-row align-items-center">
+                        <div class="rounded-circle d-flex justify-content-center align-items-center shadow-sm" style="width: 70px; height: 70px; background: linear-gradient(135deg, #b45309, var(--radar-yellow));">
+                            <i class="bi bi-people-fill fs-2 text-white"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h6 class="text-secondary text-uppercase fw-bold mb-1" style="font-size: 0.85rem;">Candidato a Vice</h6>
+                            <h4 class="fw-bold mb-0" th:text="${candidato.vicepresidente}" style="color: var(--radar-navy);">Nombre Vice</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        
+        <!-- Botón PDF Plan de Gobierno -->
+        <div th:if="${not #strings.isEmpty(candidato.pdfPlanGobiernoUrl)}" class="text-center mt-2">
+            <a th:href="${candidato.pdfPlanGobiernoUrl}" target="_blank" class="btn btn-lg rounded-pill shadow-sm px-5 fw-bold" style="background-color: var(--radar-navy); color: white; border: 2px solid var(--radar-green); transition: all 0.2s;">
+                <i class="bi bi-file-pdf-fill me-2" style="color: var(--radar-green);"></i> Baixar Plano de Governo
+            </a>
+        </div>
+        
+    </div>
+
+    <!-- Footer Corporativo Oficial -->
+    <footer class="footer-text">
+        INFORMAÇÃO QUE FORTALECE A DEMOCRACIA
+    </footer>
+
+    <!-- Script para formatear el valor de patrimonio y redes sociales -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. FORMATEO DE PATRIMONIO
+            const elPat = document.getElementById('patrimonio-card-val');
+            if (elPat) {
+                let texto = elPat.innerText;
+                let numStr = texto.replace('R$', '').trim().replace(/\./g, '').replace(',', '.');
+                let numVal = parseFloat(numStr);
+                if (!isNaN(numVal)) {
+                    elPat.innerText = numVal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                }
+            }
+
+            // 2. CONSTRUCCIÓN INTELIGENTE Y SANITIZACIÓN DE REDES SOCIALES
+            const datosRedes = document.getElementById('datos-redes-candidato');
+            const contenedorRedes = document.getElementById('contenedor-redes-presidenciales');
+            
+            if (datosRedes && contenedorRedes) {
+                const redesStr = datosRedes.innerText.trim();
+                if (redesStr.length > 0) {
+                    const links = redesStr.split(',').map(l => l.trim()).filter(l => l.length > 0);
+                    
+                    let redesFiltradas = {};
+                    
+                    links.forEach(link => {
+                        // SANITIZADOR EXTREMO: Limpiamos los errores de tipeo del TSE
+                        let cleanUrl = link
+                            .replace(/^https?:\/\//i, '') // Quita el http:// o https:// normal
+                            .replace(/^https?\/\//i, '')  // Quita el error común del TSE: http// (sin dos puntos)
+                            .replace(/^www\./i, '');      // Quita el www.
+                            
+                        // Reconstruimos la URL perfecta
+                        let url = 'https://www.' + cleanUrl;
+                        let urlLower = url.toLowerCase();
+                        
+                        // Clasificación única por plataforma
+                        if (urlLower.includes('instagram.com') && !redesFiltradas['ig']) {
+                            redesFiltradas['ig'] = url;
+                        } else if (urlLower.includes('facebook.com') && !redesFiltradas['fb']) {
+                            redesFiltradas['fb'] = url;
+                        } else if ((urlLower.includes('twitter.com') || urlLower.includes('x.com')) && !redesFiltradas['x']) {
+                            redesFiltradas['x'] = url;
+                        } else if (urlLower.includes('youtube.com') && !redesFiltradas['yt']) {
+                            redesFiltradas['yt'] = url;
+                        } else if (!urlLower.includes('instagram.com') && !urlLower.includes('facebook.com') && !urlLower.includes('twitter.com') && !urlLower.includes('x.com') && !urlLower.includes('youtube.com') && !urlLower.includes('tiktok') && !urlLower.includes('flickr') && !redesFiltradas['site']) {
+                            redesFiltradas['site'] = url;
+                        }
+                    });
+                    
+                    const ordenRedes = [
+                        { id: 'ig', nombre: 'Instagram', icono: 'bi-instagram', color: '#E1306C' },
+                        { id: 'fb', nombre: 'Facebook', icono: 'bi-facebook', color: '#1877F2' },
+                        { id: 'x', nombre: 'X', icono: 'bi-twitter-x', color: '#000000' },
+                        { id: 'yt', nombre: 'YouTube', icono: 'bi-youtube', color: '#FF0000' },
+                        { id: 'site', nombre: 'Site Oficial', icono: 'bi-globe', color: 'var(--radar-navy)' }
+                    ];
+
+                    let htmlRedes = '';
+                    
+                    ordenRedes.forEach(red => {
+                        if (redesFiltradas[red.id]) {
+                            htmlRedes += `
+                            <a href="${redesFiltradas[red.id]}" target="_blank" class="btn btn-sm text-white rounded-pill px-3 py-2 shadow-sm" 
+                               style="background-color: ${red.color}; font-weight: 600; border: 1px solid rgba(0,0,0,0.1); transition: transform 0.2s;"
+                               onmouseover="this.style.transform='translateY(-2px)'" 
+                               onmouseout="this.style.transform='translateY(0)'">
+                                <i class="bi ${red.icono} me-1 fs-6"></i> ${red.nombre}
+                            </a>`;
+                        }
+                    });
+                    
+                    contenedorRedes.innerHTML = htmlRedes;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

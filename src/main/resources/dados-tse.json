@@ -1,0 +1,214 @@
+{
+    "candidatos": [
+        {
+            "nomeUrna": "Leonardo Avalanche",
+            "partido": {
+                "sigla": "PRTB"
+            },
+            "numeroUrna": "28",
+            "profesion": "Empresário",
+            "patrimonio": "R$ 495.030.000,00",
+            "situacionLegal": "Pendente De Julgamento",
+            "vicepresidente": "Leonardo Alves De Araujo",
+            "fotoUrl": "/images/candidatos/leonardo_avalanche.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002554479",
+            "resumenPropuestas": "* Defesa do conservadorismo nos costumes e do fortalecimento da família tradicional brasileira.\n* Apoio ao liberalismo econômico, com foco na redução da máquina pública e privatizações.\n* Discurso alinhado ao bolsonarismo, priorizando a segurança pública e a pauta armamentista.",
+            "propuestas": "Coligação: Prtb (**)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Renan Santos",
+            "partido": {
+                "sigla": "MISSÃO"
+            },
+            "numeroUrna": "14",
+            "profesion": "Empresário",
+            "patrimonio": "R$ 795.089,00",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Aroldo Medina",
+            "fotoUrl": "/images/candidatos/renan_santos.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002540694",
+            "resumenPropuestas": "* Defesa intransigente do liberalismo econômico com foco na redução da máquina pública.\n* Combate rigoroso à corrupção e defesa da liberdade individual frente ao Estado.\n* Valorização da meritocracia como pilar central para o desenvolvimento social do país.",
+            "propuestas": "Coligação: Missão (**)\nPerfil: Masc., Branca, Solteiro(A)\nEscolaridade: Superior Incompleto\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Zema",
+            "partido": {
+                "sigla": "NOVO"
+            },
+            "numeroUrna": "30",
+            "profesion": "Empresário",
+            "patrimonio": "R$ 178.707.610,09",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Luis Eduardo Grangeiro Girão",
+            "fotoUrl": "/images/candidatos/zema.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002539826",
+            "resumenPropuestas": "* Privatização de estatais e redução drástica da máquina pública.\n* Desburocratização severa para incentivar o empreendedorismo e o setor privado.\n* Foco prioritário na eficiência da gestão fiscal e no equilíbrio das contas públicas.",
+            "propuestas": "Coligação: Novo (**)\nPerfil: Masc., Branca, Divorciado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Ronaldo Caiado",
+            "partido": {
+                "sigla": "PSD"
+            },
+            "numeroUrna": "55",
+            "profesion": "Médico",
+            "patrimonio": "R$ 52.557.930,98",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Gilberto Kassab",
+            "fotoUrl": "/images/candidatos/ronaldo_caiado.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002551932",
+            "resumenPropuestas": "* Defesa da liberdade econômica e do agronegócio como motor do desenvolvimento.\n* Promoção de políticas de segurança pública rígidas e combate ao crime organizado.\n* Ênfase no federalismo e na maior autonomia para os estados na gestão de recursos.",
+            "propuestas": "Coligação: Psd (**)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Lula",
+            "partido": {
+                "sigla": "PT"
+            },
+            "numeroUrna": "13",
+            "profesion": "Torneiro Mecânico",
+            "patrimonio": "R$ 4.775.650,64",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Geraldo Jose Rodrigues Alckmin Filho",
+            "fotoUrl": "/images/candidatos/lula.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002542548",
+            "resumenPropuestas": "* Combate à fome e à pobreza através de programas sociais fortalecidos.\n* Reindustrialização do país com foco em sustentabilidade e transição energética.\n* Fortalecimento do papel do Estado na economia e na proteção de direitos trabalhistas.",
+            "propuestas": "Coligação: Brasil Pronto Pra Mais (PSB / PDT / FEDERAÇÃO BRASIL DA ESPERANÇA - FE BRASIL(PT/PC do B/PV) / FEDERAÇÃO PSOL REDE(PSOL/REDE))\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Ensino Fundamental Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Escritor Augusto Cury",
+            "partido": {
+                "sigla": "AVANTE"
+            },
+            "numeroUrna": "70",
+            "profesion": "Escritor E Crítico",
+            "patrimonio": "R$ 242.593.012,43",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Julio Cesar Delgado",
+            "fotoUrl": "/images/candidatos/escritor_augusto_cury.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002551547",
+            "resumenPropuestas": "* Implementação de programas de gestão da emoção e prevenção ao suicídio nas escolas públicas.\n* Promoção de políticas de educação emocional para fortalecer a saúde mental da população.\n* Foco no desenvolvimento do pensamento crítico e da humanização nas relações sociais.",
+            "propuestas": "Coligação: Brasil Dos Nossos Sonhos (AGIR / AVANTE)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Flavio Bolsonaro",
+            "partido": {
+                "sigla": "PL"
+            },
+            "numeroUrna": "22",
+            "profesion": "Senador",
+            "patrimonio": "R$ 8.186.555,83",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Alfredo Gaspar De Mendonça Neto",
+            "fotoUrl": "/images/candidatos/flavio_bolsonaro.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002551544",
+            "resumenPropuestas": "* Defesa intransigente dos valores conservadores e da família tradicional brasileira.\n* Apoio ao fortalecimento da segurança pública e ao endurecimento das leis penais.\n* Estímulo ao liberalismo econômico, com foco em privatizações e redução do Estado.",
+            "propuestas": "Coligação: Pl (**)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Clariana Barao",
+            "partido": {
+                "sigla": "DC"
+            },
+            "numeroUrna": "27",
+            "profesion": "Advogado",
+            "patrimonio": "R$ 1.820.760,17",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Fabiana Cristina Tavares Torquato",
+            "fotoUrl": "/images/candidatos/clariana_barao.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002552484",
+            "resumenPropuestas": "* Defesa dos valores cristãos e da família tradicional como base da sociedade.\n* Estímulo ao empreendedorismo com redução da burocracia e impostos.\n* Fortalecimento da soberania nacional e da segurança pública com rigor penal.",
+            "propuestas": "Coligação: Dc (**)\nPerfil: Fem., Branca, Solteiro(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Hertz Dias",
+            "partido": {
+                "sigla": "PSTU"
+            },
+            "numeroUrna": "16",
+            "profesion": "Professor De Ensino Fundamental",
+            "patrimonio": "R$ 170.000,00",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Vanessa Portugal Barbosa",
+            "fotoUrl": "/images/candidatos/hertz_dias.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002541457",
+            "resumenPropuestas": "Aquí tienes 3 propuestas principales de Hertz Dias (PSTU):\n\n*   Ruptura total con el capitalismo y transición hacia un sistema socialista basado en consejos obreros.\n*   Expropiación de las grandes empresas y bancos para financiar servicios públicos como salud y educación.\n*   Reforma agraria radical y demarcación inmediata de todas las tierras indígenas y quilombolas.",
+            "propuestas": "Coligação: Pstu (**)\nPerfil: Masc., Preta, Solteiro(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Edmilson Costa",
+            "partido": {
+                "sigla": "PCB"
+            },
+            "numeroUrna": "21",
+            "profesion": "Aposentado (Exceto Servidor Público)",
+            "patrimonio": "R$ 454.485,68",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Cleusa Dos Santos",
+            "fotoUrl": "/images/candidatos/edmilson_costa.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002551975",
+            "resumenPropuestas": "* Superação do capitalismo e construção de uma sociedade socialista no Brasil.\n* Rompimento com o pagamento da dívida pública e auditoria cidadã.\n* Estatização do sistema financeiro e dos setores estratégicos da economia.",
+            "propuestas": "Coligação: Pcb (**)\nPerfil: Masc., Parda, Solteiro(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Samara",
+            "partido": {
+                "sigla": "UP"
+            },
+            "numeroUrna": "80",
+            "profesion": "Odontólogo",
+            "patrimonio": "R$ 33.000,00",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Raquel Nonato De Bricio",
+            "fotoUrl": "/images/candidatos/samara.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002538811",
+            "resumenPropuestas": "* Revogação das reformas trabalhista e previdenciária e o fim do teto de gastos.\n* Estatização das empresas privatizadas e fortalecimento da soberania nacional.\n* Implementação de uma reforma urbana e agrária radical com controle popular.",
+            "propuestas": "Coligação: Up (**)\nPerfil: Fem., Preta, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Veterinário Wilson Grassi",
+            "partido": {
+                "sigla": "DEMOCRATA"
+            },
+            "numeroUrna": "35",
+            "profesion": "Veterinário",
+            "patrimonio": "R$ 50.000.000,00",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Suêd Haidar Nogueira",
+            "fotoUrl": "/images/candidatos/veterinário_wilson_grassi.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002548139",
+            "resumenPropuestas": "* Implementação de políticas públicas voltadas ao bem-estar animal e saúde pública veterinária.\n* Defesa do fortalecimento do agronegócio com foco em sustentabilidade e sanidade animal.\n* Promoção de projetos de castração gratuita e combate ao abandono em escala nacional.",
+            "propuestas": "Coligação: Democrata (**)\nPerfil: Masc., Branca, Divorciado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Rui Costa Pimenta",
+            "partido": {
+                "sigla": "PCO"
+            },
+            "numeroUrna": "29",
+            "profesion": "Jornalista E Redator",
+            "patrimonio": "Não declarado",
+            "situacionLegal": "Deferido",
+            "vicepresidente": "Antonio Carlos Silva",
+            "fotoUrl": "/images/candidatos/rui_costa_pimenta.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002552487",
+            "resumenPropuestas": "* Defesa da dissolução da Polícia Militar e do fim da repressão estatal.\n* Rompimento com o imperialismo e saída de organismos como o FMI.\n* Estatização das grandes empresas e bancos sob controle dos trabalhadores.",
+            "propuestas": "Coligação: Pco (**)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        },
+        {
+            "nomeUrna": "Pablo Marçal",
+            "partido": {
+                "sigla": "PRTB"
+            },
+            "numeroUrna": "28",
+            "profesion": "Diretor De Empresas",
+            "patrimonio": "R$ 149.986.151,74",
+            "situacionLegal": "Indeferido",
+            "vicepresidente": "Leonardo Alves De Araujo",
+            "fotoUrl": "/images/candidatos/pablo_marçal.jpg",
+            "pdfPlanGobiernoUrl": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2026/20322002026/BR/280002553884",
+            "resumenPropuestas": "Aquí tienes las 3 propuestas principales de Pablo Marçal:\n\n*   **Desburocratización radical:** Reducción drástica de ministerios y trámites estatales para fomentar el emprendimiento privado.\n*   **Reforma educativa con enfoque práctico:** Implementación de educación financiera y tecnología desde la base escolar para generar riqueza.\n*   **Fortalecimiento del libre mercado:** Privatización de empresas estatales y eliminación de subsidios para dinamizar la economía nacional.",
+            "propuestas": "Coligação: Prtb (**)\nPerfil: Masc., Branca, Casado(A)\nEscolaridade: Superior Completo\nLimite de Gastos: R$ 88.944.030,80\nSites: Nenhuma"
+        }
+    ]
+}
